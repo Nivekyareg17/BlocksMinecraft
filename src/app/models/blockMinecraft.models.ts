@@ -3,4 +3,6 @@ export interface blockMinecraft {
   nombre: string;
   bioma: string;
   type: string;
+  color: string;
+  description: string;
 }

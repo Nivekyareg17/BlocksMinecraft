@@ -3,14 +3,47 @@
 <section class="section-FaL">
 
 <!--Form-->
-<form  class="form-container"  (ngSubmit)="guardarBlocks()" style="background-image : url('CrafterTable.png') ;">
+<form  class="form-container"  (ngSubmit)="guardarBlocks()" style="background-image : url('CrafterTable.png') ;" #form="ngForm">
   
-  <input class="input-name"  type="text" placeholder="Nombre" [(ngModel)]="block.nombre" name="nombre" required />
-  <input class="input-bioma" type="text" placeholder="Bioma" [(ngModel)]="block.bioma" name="bioma" required />
-  <input class="input-type" type="text" placeholder="Tipo" [(ngModel)]="block.type" name="type" required />
-  <button  class="btn_DaS" type="submit">
-    {{ editando ? 'Actualizar' : 'Guardar' }}
-  </button>
+  <input class="input-name"  type="text" placeholder="Nombre" [(ngModel)]="block.nombre" name="nombre" required #nombre = "ngModel"/>
+  <p  *ngIf="nombre.invalid && nombre.touched" style="color: aliceblue;">Campo lleno 😡</p>
+  <input class="input-bioma" type="text" placeholder="Bioma" [(ngModel)]="block.bioma" name="bioma" required #bioma="ngModel"/>
+  <p  *ngIf="bioma.invalid && bioma.touched" style="color: aliceblue;">Campo lleno 😡</p>
+  <input  class="input-type" type="text" placeholder="Tipo" [(ngModel)]="block.type" name="type" required #tipo="ngModel"/>
+  <p  *ngIf="tipo.invalid && tipo.touched" style="color: aliceblue;">Campo lleno 😡</p>
+  <input class="input-color" type="text" placeholder="Color" [(ngModel)]="block.color" name="color" required #color="ngModel"/>
+  <p  *ngIf="color.invalid && color.touched" style="color: aliceblue;">Campo lleno 😡</p>
+  <input class="input-description" type="text" placeholder="description" [(ngModel)]="block.description" name="type" required #description="ngModel" />
+  <p  *ngIf="description.invalid && description.touched" style="color: aliceblue;">Campo lleno 😡</p>
+ 
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">
+  Guardar
+</button>
+<div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="miModalLabel">Creando bloque</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Estas seguro de crear este bloque?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+       <button  class="btn_DaS" type="submit">
+       {{ editando ? 'Actualizar' : 'Guardar' }}
+       </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </form>
 
 
@@ -20,6 +53,8 @@
     <th>Nombre</th>
     <th>Bioma</th>
     <th>Tipo</th>
+    <th>Color</th>
+    <th>Description</th>
     <th>Acciones</th>
 </tr>
 
@@ -27,10 +62,63 @@
     <td>{{ b.nombre }}</td>
     <td>{{ b.bioma }}</td>
     <td>{{ b.type}}</td>
+    <td>{{b.color}}</td>
+    <td>{{b.description}}</td>
 
     <td>
-      <button (click)="editarBlock(b)">Editar</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">
+  Editar
+</button>
+<div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="miModalLabel">Creando bloque</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Estas seguro de crear este bloque?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+       <button  class="btn_DaS" type="submit">
+       {{ editando ? 'Actualizar' : 'Guardar' }}
+       </button>
+
+      </div>
+    </div>
+  </div>
+</div>
       <button (click)="eliminarBlock(b._id!)">Eliminar</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#miModal">
+  Eliminar
+</button>
+<div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="miModalLabel">Creando bloque</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Estas seguro de crear este bloque?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+       <button  class="btn_DaS" type="submit">
+       {{ editando ? 'Actualizar' : 'Guardar' }}
+       </button>
+
+      </div>
+    </div>
+  </div>
+</div>
     </td>
   </tr>
 </table>

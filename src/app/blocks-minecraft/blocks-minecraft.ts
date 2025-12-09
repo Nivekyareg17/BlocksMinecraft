@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { BlockService } from '../services/block-service'; 
 import { FormsModule } from '@angular/forms';
-// Imaginemos que aquí importamos la forma correcta del bloque, la 'Block'
+
 interface Block {
-    _id?: string;
-    nombre: string;
-    bioma: string;
-    type: string;
+  _id?: string;
+  nombre: string;
+  bioma: string;
+  type: string;
+  color: string;
+  description: string;
+    
 }
 
 @Component({
@@ -18,7 +21,7 @@ interface Block {
 export class BlocksMinecraft implements OnInit {
  
   blocks: Block[] = []; 
-  block: Block = { nombre: '', bioma: '', type: '' }; 
+  block: Block = { nombre: '', bioma: '', type: '', color: '', description: '' }; 
   
   editando = false;
   idEnEdicion: string | null = null;
@@ -39,7 +42,7 @@ export class BlocksMinecraft implements OnInit {
   guardarBlocks() {
     if (!this.editando) {
       this.blockService.crearBlock(this.block).subscribe(() => {
-        this.block = { nombre: '', bioma: '', type: '' };
+        this.block = {nombre: '', bioma: '', type: '', color: '', description: ''};
         this.getBlocks(); 
       });
     } else {
@@ -47,7 +50,7 @@ export class BlocksMinecraft implements OnInit {
         this.blockService.actualizarBlock(this.idEnEdicion, this.block).subscribe(() => {
           this.editando = false;
           this.idEnEdicion = null;
-          this.block = { nombre: '', bioma: '', type: '' };
+          this.block = { nombre: '', bioma: '', type: '', color: '', description: ''};
           this.getBlocks(); 
         });
       }
@@ -57,7 +60,7 @@ export class BlocksMinecraft implements OnInit {
   editarBlock(b: Block) { 
     this.editando = true;
     this.idEnEdicion = b._id!;
-    this.block = { nombre: b.nombre, bioma: b.bioma, type: b.type };
+    this.block = { nombre: b.nombre, bioma: b.bioma, type: b.type, color: b.color, description: b.description };
   }
 
   eliminarBlock(id: string) {
