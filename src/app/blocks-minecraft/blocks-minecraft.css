@@ -1,0 +1,66 @@
+.title-pag{
+    text-align: center;
+}
+.form-container{
+   
+    max-width: 350px;
+    width: 75%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0px;
+    border-radius: 10px;
+    height: 330px;
+    gap: 15px;
+}
+.input-email, .input-name{
+    border-style: none;
+    border-radius: 4px;
+}
+.btn_DaS{
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color:#187720;
+    color:white;
+    padding: 8px 12px;
+}
+.table-list {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.table-list th {
+  background: #187720;
+  color: white;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-list td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.table-list tr:nth-child(even) {
+  background: #f0f0ff;
+}
+
+.table-list button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+  background: #d23b3b;
+  color: white;
+  border-radius: 4px;
+}
+
+.table-list button:hover {
+  background: #4e5bc7;
+}
